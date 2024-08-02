@@ -1,0 +1,30 @@
+<header>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+        </div>
+      </nav>
+</header>
+
+<div class="sidebar">
+    <div class="sidebar-conteudo">
+        <h1 (click)="setPaginaDia(true); setPaginaALimento(false); setPaginaAtividade(false)">DIAS</h1>
+        <h1 (click)="setPaginaAtividade(true);setPaginaALimento(false); setPaginaDia(false)" >ATIVIDADES</h1>
+        <h1 (click)="setPaginaALimento(true); setPaginaAtividade(false); setPaginaDia(false)">ALIMENTOS</h1>
+    </div>
+
+</div>
+
+<body class="conteudo">
+    
+    <app-dias *ngIf="getPaginaDia()"></app-dias>
+    <app-atividades *ngIf="getPaginaAtividade()"></app-atividades>
+    <app-alimentos *ngIf="getPaginaAlimento()"></app-alimentos>    
+
+    <footer class="footer">
+        <p class="texto-footer">Desenvolvido por nós</p>
+    </footer>
+    
+</body>
+
+
