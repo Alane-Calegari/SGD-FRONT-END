@@ -9,8 +9,8 @@ import { AtividadesComponent } from './components/atividades/atividades.componen
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     MatIconModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,   
+    ReactiveFormsModule 
   ]
 })
 export class AppModule { }

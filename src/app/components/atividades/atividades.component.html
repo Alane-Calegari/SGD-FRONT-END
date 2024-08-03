@@ -11,16 +11,16 @@
        </thead>
 
        <tbody>
-        <tr>
-            <td class="mat-cell">Dormir</td>
+        <tr *ngFor="let atividade of atividades; let i = index">
+            <td class="mat-cell">{{atividade.descricao}}</td>
             
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-atividades">
+                <button (click)="pegarElemento(atividades[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-atividades">
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-atividades">
+                <button (click)="pegarElemento(atividades[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-atividades">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -42,11 +42,18 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+                <form [formGroup] = "formCadastro">
+                    <label>Informe o nome da atividade</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+                        <input formControlName="descricao" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>    
+                </form>
+                          
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar</button>
+              <button (click)="post()" type="button" class="btn btn-primary " data-bs-dismiss="modal">Salvar</button>
             </div>
           </div>
         </div>
@@ -64,7 +71,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-danger">Excluir</button>
+              <button (click)="delete(itemSelecionado)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
             </div>
           </div>
         </div>
@@ -78,11 +85,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Deseja realmente alterar?
+                <form [formGroup] = "formUpdate">
+                    <label>Informe o nome da atividade</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+                        <input formControlName="descricao" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>    
+                </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-danger">Editar</button>
+              <button (click)="update()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Editar</button>
             </div>
           </div>
         </div>
