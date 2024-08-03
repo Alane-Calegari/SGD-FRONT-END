@@ -7,7 +7,7 @@ export class ControlePaginasService {
 
   constructor() { }
 
-  dia: boolean = false;
+  dia: boolean = true;
   atividade: boolean = false;
   alimento: boolean = false;
 

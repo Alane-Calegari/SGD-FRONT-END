@@ -1,19 +1,89 @@
 <h1 class="titulo">ATIVIDADES</h1>
 
-    <table class="table table-dark table-striped-columns">
+    <table class="mat-elevation-z8">
        <thead>
         <tr>
-            <th>Descrição</th>                
+            <th class="mat-header-cell">DESCRIÇÃO</th>
+            <th class="mat-header-cell">EDITAR</th>
+            <th class="mat-header-cell">EXCLUIR</th>
+                           
         </tr>        
        </thead>
 
        <tbody>
         <tr>
-            <td>Programar</td>            
-        </tr>
-        <tr>
-            <td>Dormir</td>
+            <td class="mat-cell">Dormir</td>
+            
+            <td class="mat-cell">
+                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-atividades">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+            <td class="mat-cell">
+                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-atividades">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
        </tbody>
     </table>
 
+    <div class ="custom-class">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-adiconar-atividades">
+            Adicionar Atividade
+          </button> 
+    </div>        
+     
+      <div class="modal fade" id="modal-adiconar-atividades" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Atividade</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="deletar-modal-atividades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="editar-modal-atividades" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente alterar?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+              <button type="button" class="btn btn-danger">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>

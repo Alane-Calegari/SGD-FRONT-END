@@ -1,21 +1,118 @@
 <h1 class="titulo">DIAS</h1>
 
-    <table class="table table-dark table-striped-columns">
+    <table class="mat-elevation-z8">
        <thead>
         <tr>
-            <th>Atividade</th>
-            <th>Alimentos</th>
-            <th>Gastos</th>
-            <th>Horário</th>       
+            <th class="mat-header-cell">Data</th>
+            <th class="mat-header-cell">Gastos</th>
+            <th class="mat-header-cell">Qtd Refeições</th>
+            <th class="mat-header-cell">Qtd Atividades</th> 
+            <th class="mat-header-cell">Ver mais</th>
+            <th class="mat-header-cell">Editar</th>
+            <th class="mat-header-cell">Excluir</th>                 
         </tr>        
        </thead>
 
        <tbody>
         <tr>
-            <td>Programar</td>
-            <td>Sushi</td>
-            <td>1,00</td>
-            <td>12:00</td>
+            <td class="mat-cell">10/02/2024</td>
+            <td class="mat-cell">50,00</td>
+            <td class="mat-cell">1</td>
+            <td class="mat-cell">5</td>
+            <td class="mat-cell">
+                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#ver-mais-modal-dias">
+                    <mat-icon>zoom_in</mat-icon>
+                </button>
+            </td>
+            <td class="mat-cell" >
+                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-dias" >
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+            <td class="mat-cell">
+                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-dias">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </tr>
        </tbody>
     </table>
+
+    <div class ="custom-class">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-adicionar-dia">
+            Adicionar Dia
+          </button> 
+
+    </div>        
+     
+      <div class="modal fade" id="modal-adicionar-dia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Dia</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="deletar-modal-dias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente excluir?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="editar-modal-dias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja realmente alterar?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+              <button type="button" class="btn btn-danger">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="ver-mais-modal-dias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Detalhes</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Deseja ver detalhes?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>

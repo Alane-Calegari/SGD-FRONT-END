@@ -6,6 +6,9 @@ import { PaginaInicialComponent } from './components/pagina-inicial/pagina-inici
 import { DiasComponent } from './components/dias/dias.component';
 import { AlimentosComponent } from './components/alimentos/alimentos.component';
 import { AtividadesComponent } from './components/atividades/atividades.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -15,12 +18,15 @@ import { AtividadesComponent } from './components/atividades/atividades.componen
     PaginaInicialComponent,
     DiasComponent,
     AlimentosComponent,
-    AtividadesComponent
+    AtividadesComponent    
   ],
   imports: [
     CommonModule,
     RouterLink,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatTableModule,
+    MatButtonModule
   ]
 })
 export class AppModule { }
