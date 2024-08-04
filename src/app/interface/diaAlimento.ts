@@ -1,6 +1,6 @@
 import { Alimento } from "../classes/alimento";
 
-interface  Coisa{
+export interface DiaALimento {
 
     idAlimento: Alimento;
 

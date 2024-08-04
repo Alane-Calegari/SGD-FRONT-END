@@ -14,11 +14,11 @@
        </thead>
 
        <tbody>
-        <tr>
-            <td class="mat-cell">10/02/2024</td>
-            <td class="mat-cell">50,00</td>
-            <td class="mat-cell">1</td>
-            <td class="mat-cell">5</td>
+        <tr *ngFor="let dia of dias; let i = index">
+            <td class="mat-cell">{{dia.dia}}</td>
+            <td class="mat-cell">{{dia.valorGasto}}</td>
+            <td class="mat-cell">{{dia.alimentos.length}}</td>
+            <td class="mat-cell">{{dia.atividades.length}}</td>
             <td class="mat-cell">
                 <button mat-icon-button data-bs-toggle="modal" data-bs-target="#ver-mais-modal-dias">
                     <mat-icon>zoom_in</mat-icon>
@@ -30,7 +30,7 @@
                 </button>
             </td>
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-dias">
+                <button (click)="pegarElemento(dias[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#deletar-modal-dias">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -42,19 +42,88 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-adicionar-dia">
             Adicionar Dia
           </button> 
+    </div>   
 
-    </div>        
+
+
+
+
      
       <div class="modal fade" id="modal-adicionar-dia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Dia</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
-              ...
-            </div>
+
+              <div class="todos-inputs">
+
+                <div class="select">                
+                  <select class="form-select largura" aria-label="Default select example">
+                    <option selected>Selecione os alimentos</option>
+                    <option (click)="adicionarAlimento()" *ngFor="let alimento of alimentos">{{alimento.nome}}</option>
+                   
+                  </select>   
+                     
+                  <select class="form-select largura" aria-label="Default select example">
+                    <option selected>Selecione as atividades</option>
+                    <option (click)="adicionarAtividade()" *ngFor="let atividade of atividades">{{atividade.descricao}}</option>
+                    
+                  </select>                  
+              </div>
+  
+                <div class="input-valor">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+  
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Valor Gasto</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                  </div>
+                </div>             
+              </div>
+
+              <div class="radio">
+
+                <div class="whey">
+                  <label>Whey</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup1" id="radio1">
+                    <label class="form-check-label" for="radio1">
+                      Sim
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup1" id="radio2">
+                    <label class="form-check-label" for="radio2">
+                      Não
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label>Creatina</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup2" id="radio3" checked>
+                    <label class="form-check-label" for="radio3">
+                      Sim
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup2" id="radio4">
+                    <label class="form-check-label" for="radio4">
+                      Não
+                    </label>
+                  </div>            
+                </div>                 
+              </div>
+            </div>           
+            
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
               <button type="button" class="btn btn-primary">Salvar</button>
@@ -62,7 +131,8 @@
           </div>
         </div>
       </div>
-
+      
+      
       <div class="modal fade" id="deletar-modal-dias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -75,7 +145,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-danger">Excluir</button>
+              <button (click)="delete()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
             </div>
           </div>
         </div>
@@ -110,9 +180,9 @@
               Deseja ver detalhes?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>              
             </div>
           </div>
         </div>
       </div>
+    

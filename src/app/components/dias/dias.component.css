@@ -37,3 +37,44 @@ table {
     justify-content: center;
     margin-top: 20px;
   }
+
+  .radio {
+    display: flex;
+    flex-direction: row; 
+    margin-left: 50px;         
+  }
+  .largura {
+    width: 300px;
+    margin: 10px;    
+
+  }
+
+  .whey {
+    margin-right: 30px;
+  }
+
+  .select {
+    display: flex;
+    flex-direction: column;     
+  }
+
+  .input-valor {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todos-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  
+
+ 
+
+
+ 
+
+ 

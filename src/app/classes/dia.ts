@@ -1,3 +1,6 @@
+import { DiaALimento } from "../interface/diaAlimento";
+import { DiaAtividade } from "../interface/diaAtividade";
+import { Status } from "../interface/status";
 
 export class Dia {
 
@@ -6,6 +9,6 @@ export class Dia {
 	valorGasto!: number;	
 	whey!: Status;	
 	creatina!: Status;		
-	alimentos!: Coisa[];
-    atividades!: AtividadeDia[];
+	alimentos!: DiaALimento[];
+    atividades!: DiaAtividade[];
 }
