@@ -17,6 +17,8 @@ export class DiasComponent {
   atividades: Atividade[] = [];
   dias: Dia[] = [];
   itemSelecionado: number = 0;
+  primeiraTela: boolean = true;
+  ultimaTela: boolean = false;
 
   constructor (private diaService: DiaService, private alimentoService: AlimentoService, private atividadeService: AtividadeService){}
 

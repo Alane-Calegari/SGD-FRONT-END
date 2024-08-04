@@ -44,11 +44,6 @@
           </button> 
     </div>   
 
-
-
-
-
-     
       <div class="modal fade" id="modal-adicionar-dia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -56,22 +51,17 @@
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Dia</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body">
-
               <div class="todos-inputs">
-
                 <div class="select">                
                   <select class="form-select largura" aria-label="Default select example">
                     <option selected>Selecione os alimentos</option>
                     <option (click)="adicionarAlimento()" *ngFor="let alimento of alimentos">{{alimento.nome}}</option>
-                   
                   </select>   
                      
                   <select class="form-select largura" aria-label="Default select example">
                     <option selected>Selecione as atividades</option>
                     <option (click)="adicionarAtividade()" *ngFor="let atividade of atividades">{{atividade.descricao}}</option>
-                    
                   </select>                  
               </div>
   
@@ -89,7 +79,6 @@
               </div>
 
               <div class="radio">
-
                 <div class="whey">
                   <label>Whey</label>
                   <div class="form-check">
@@ -105,8 +94,7 @@
                     </label>
                   </div>
                 </div>
-
-                <div>
+                <div class="creatina">
                   <label>Creatina</label>
                   <div class="form-check">
                     <input class="form-check-input" type="radio" name="radioGroup2" id="radio3" checked>
@@ -120,13 +108,14 @@
                       Não
                     </label>
                   </div>            
-                </div>                 
+                </div> 
               </div>
             </div>           
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar</button>
+              <button *ngIf="ultimaTela" type="button" class="btn btn-primary">Salvar</button>
+              <button *ngIf="primeiraTela">Proximo</button>
             </div>
           </div>
         </div>
