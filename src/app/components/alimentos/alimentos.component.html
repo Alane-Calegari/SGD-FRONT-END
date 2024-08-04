@@ -11,17 +11,17 @@
        </thead>
 
        <tbody>
-        <tr>
-            <td class="mat-cell">Maçã</td>
-            <td class="mat-cell">5</td>            
+        <tr *ngFor="let alimento of alimentos, let i = index">
+            <td class="mat-cell">{{alimento.nome}}</td>
+            <td class="mat-cell">{{alimento.calorias}}</td>                       
             
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-alimentos">
+                <button (click)="pegarElemento(alimentos[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-alimentos">
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#excluir-modal-alimentos">
+                <button (click)="pegarElemento(alimentos[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#excluir-modal-alimentos">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -33,9 +33,8 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Adicionar Alimentos
           </button> 
+    </div>  
 
-    </div>        
-     
       <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -44,11 +43,22 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+              <form [formGroup] = "formCadastro">
+                <label>Informe o nome do alimento</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+                    <input formControlName="nome" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">                    
+                </div>                 
+                <label>Informe as calorias do alimento</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Calorias</span>
+                  <input formControlName="calorias" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">                    
+                </div>                 
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Salvar</button>
+              <button (click)="post()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
             </div>
           </div>
         </div>
@@ -66,7 +76,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-danger">Excluir</button>
+              <button (click)="delete(itemSelecionado)" type="button" class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
             </div>
           </div>
         </div>
@@ -80,11 +90,22 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Deseja realmente alterar?
+              <form [formGroup] = "formUpdate">
+                <label>Informe o nome do alimento</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
+                  <input formControlName="nome" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">                    
+                </div>                 
+                <label>Informe as calorias do alimento</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Calorias</span>
+                  <input formControlName="calorias" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">                    
+                </div>                 
+              </form>              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-danger">Excluir</button>
+              <button (click)="update()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Alterar</button>
             </div>
           </div>
         </div>

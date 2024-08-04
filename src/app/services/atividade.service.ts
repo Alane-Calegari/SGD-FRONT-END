@@ -26,6 +26,5 @@ export class AtividadeService {
 
   update(atividade: Atividade): Observable<string> {
     return this.http.put(this.url, atividade, {responseType:'text'});
-
   }
  }
