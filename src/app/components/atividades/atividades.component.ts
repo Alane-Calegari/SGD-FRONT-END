@@ -26,7 +26,6 @@ export class AtividadesComponent {
 
  pegarElemento(atividade: Atividade) {
   this.itemSelecionado = atividade.id;
-  console.log(this.itemSelecionado);
  }
 
  atividadeForm(){
@@ -51,7 +50,6 @@ export class AtividadesComponent {
       console.log(e);
     },
     complete: () => {
-      console.log("Deu certo!");
     }
 
   });
@@ -59,30 +57,26 @@ export class AtividadesComponent {
 
  delete(id: number) {
   this.atividadeService.delete(id).subscribe({
-    next:(response) => {
-      console.log(response);
+    next:() => {
     },
     error: (e) => {
       console.log(e);
     },
     complete: () => {
       this.getAll();
-      console.log("Atividade excluída com sucesso!");
     }
   });
  }
 
  post() {  
   this.atividadeService.post(this.formCadastro.value).subscribe({
-    next:(response) => {
-      console.log(response);
+    next:() => {
     },
     error: (e) => {
       console.log(e);
     },
     complete: () => {
       this.getAll();
-      console.log("Atividade cadastrada com sucesso!");
     }
   });
   }
@@ -90,15 +84,13 @@ export class AtividadesComponent {
   update() {
     this.formUpdate.value.id = this.itemSelecionado;
     this.atividadeService.update(this.formUpdate.value).subscribe({
-      next:(response) => {
-        console.log(response);
+      next:() => {
       },
       error: (e) => {
         console.log(e);
       },
       complete: () => {
         this.getAll();
-        console.log("Atividade atualizada com sucesso!");
       }
     });
   }  

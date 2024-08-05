@@ -25,7 +25,6 @@ export class AlimentosComponent {
 
   pegarElemento(alimento: Alimento) {
     this.itemSelecionado = alimento.id;
-    console.log(this.itemSelecionado);
    }
 
    alimentoForm(){
@@ -52,37 +51,32 @@ export class AlimentosComponent {
         console.log(e);
       },
       complete: () => {
-        console.log("Deu certo!");
       }    
     });
   }
 
   delete(id: number) {
     this.alimentoService.delete(id).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
       },
       error: (e) => {
         console.log(e);
       },
       complete: () => {
         this.getAll();
-      console.log("Alimento excluído com sucesso!");
       }    
     });
   }
 
   post() {  
     this.alimentoService.post(this.formCadastro.value).subscribe({
-      next:(response) => {
-        console.log(response);
+      next:() => {
       },
       error: (e) => {
         console.log(e);
       },
       complete: () => {
         this.getAll();
-        console.log("Alimento cadastrado com sucesso!");
       }
     });
     }
@@ -90,15 +84,13 @@ export class AlimentosComponent {
     update() {
       this.formUpdate.value.id = this.itemSelecionado;
       this.alimentoService.update(this.formUpdate.value).subscribe({
-        next:(response) => {
-          console.log(response);
+        next:() => {
         },
         error: (e) => {
           console.log(e);
         },
         complete: () => {
           this.getAll();
-          console.log("Alimento atualizado com sucesso!");
         }
       });
     }  

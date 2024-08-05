@@ -40,7 +40,6 @@ export class DiasComponent {
 
   pegarElemento(dia: Dia) {
     this.itemSelecionado = dia.id;
-    console.log(this.itemSelecionado);
   }
 
   getAllHorarios() {
@@ -52,8 +51,6 @@ export class DiasComponent {
         console.log(e);
       },
       complete: () => {
-        console.log("Deu certo!");
-        console.log(this.horarios);
       }    
     });
   }
@@ -67,7 +64,6 @@ export class DiasComponent {
         console.log(e);
       },
       complete: () => {
-        console.log("Deu certo!");
       }    
     });
   }
@@ -81,7 +77,6 @@ export class DiasComponent {
         console.log(e);
       },
       complete: () => {
-        console.log("Deu certo!");
       }
   
     });
@@ -98,21 +93,18 @@ export class DiasComponent {
         console.log(e);
       },
       complete: () => {
-        console.log("Deu certo!");
       }      
     });
   }
 
   delete(){
     this.diaService.delete(this.itemSelecionado).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: () => {
       },
       error: (e) => {
         console.log(e);
       }, 
       complete: () => {
-        console.log("Dia excluído com sucesso!");
         this.getAll();
       }       
     });
@@ -127,7 +119,6 @@ export class DiasComponent {
         console.log(e);
       }, 
       complete: () => {
-        console.log("Deu Certo!");
       }
     });
   }
