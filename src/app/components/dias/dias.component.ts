@@ -1,10 +1,12 @@
-import { Component, numberAttribute } from '@angular/core';
+import { Component } from '@angular/core';
 import { Dia } from '../../classes/dia';
 import { DiaService } from '../../services/dia.service';
 import { AlimentoService } from '../../services/alimento.service';
 import { AtividadeService } from '../../services/atividade.service';
 import { Atividade } from '../../classes/atividade';
 import { Alimento } from '../../classes/alimento';
+import { HorarioService } from '../../services/horarioService';
+import { Horario } from '../../classes/Horario';
 
 @Component({
   selector: 'app-dias',
@@ -16,21 +18,44 @@ export class DiasComponent {
   alimentos: Alimento[] = [];
   atividades: Atividade[] = [];
   dias: Dia[] = [];
+  horarios: Horario[] = [];
   itemSelecionado: number = 0;
   primeiraTela: boolean = true;
+  segundaTela: boolean = false;
   ultimaTela: boolean = false;
+  dia = new Dia();
 
-  constructor (private diaService: DiaService, private alimentoService: AlimentoService, private atividadeService: AtividadeService){}
+  constructor (private diaService: DiaService, 
+    private alimentoService: AlimentoService, 
+    private atividadeService: AtividadeService,
+    private horarioService: HorarioService  
+  ){}
 
   ngOnInit(){
     this.getAll();  
     this.getAllAtividades();  
     this.getAllAlimentos();
+    this.getAllHorarios();
   }
 
   pegarElemento(dia: Dia) {
     this.itemSelecionado = dia.id;
     console.log(this.itemSelecionado);
+  }
+
+  getAllHorarios() {
+    this.horarioService.getAll().subscribe({
+      next: (response) => {
+        this.horarios = response;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => {
+        console.log("Deu certo!");
+        console.log(this.horarios);
+      }    
+    });
   }
 
   getAllAlimentos() {
@@ -93,7 +118,19 @@ export class DiasComponent {
     });
   }
 
-  
+  getById() {
+    this.diaService.getById(this.itemSelecionado).subscribe({
+      next: (response) => {
+        this.dia = response;
+      },
+      error: (e) => {
+        console.log(e);
+      }, 
+      complete: () => {
+        console.log("Deu Certo!");
+      }
+    });
+  }
 
   
 

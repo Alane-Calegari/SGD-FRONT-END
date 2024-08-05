@@ -15,17 +15,17 @@
 
        <tbody>
         <tr *ngFor="let dia of dias; let i = index">
-            <td class="mat-cell">{{dia.dia}}</td>
+            <td class="mat-cell">{{dia.dia | date:'dd/MM/yyyy'}}</td>
             <td class="mat-cell">{{dia.valorGasto}}</td>
             <td class="mat-cell">{{dia.alimentos.length}}</td>
             <td class="mat-cell">{{dia.atividades.length}}</td>
             <td class="mat-cell">
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#ver-mais-modal-dias">
+                <button (click)="pegarElemento(dias[i]); getById()" mat-icon-button data-bs-toggle="modal" data-bs-target="#ver-mais-modal-dias">
                     <mat-icon>zoom_in</mat-icon>
                 </button>
             </td>
             <td class="mat-cell" >
-                <button mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-dias" >
+                <button (click)="pegarElemento(dias[i])" mat-icon-button data-bs-toggle="modal" data-bs-target="#editar-modal-dias" >
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>
@@ -52,70 +52,100 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="todos-inputs">
-                <div class="select">                
-                  <select class="form-select largura" aria-label="Default select example">
-                    <option selected>Selecione os alimentos</option>
-                    <option (click)="adicionarAlimento()" *ngFor="let alimento of alimentos">{{alimento.nome}}</option>
-                  </select>   
-                     
-                  <select class="form-select largura" aria-label="Default select example">
-                    <option selected>Selecione as atividades</option>
-                    <option (click)="adicionarAtividade()" *ngFor="let atividade of atividades">{{atividade.descricao}}</option>
-                  </select>                  
-              </div>
-  
-                <div class="input-valor">
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
-                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                  </div>
-  
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Valor Gasto</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                  </div>
-                </div>             
+
+              <div *ngIf="primeiraTela" class="primeiraTela">
+                <h1>Selecione os Alimentos</h1>
+                <div *ngFor="let alimento of alimentos" class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    {{alimento.nome}}
+                  </label>
+                </div>
               </div>
 
-              <div class="radio">
-                <div class="whey">
-                  <label>Whey</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioGroup1" id="radio1">
-                    <label class="form-check-label" for="radio1">
-                      Sim
-                    </label>
+              <div *ngIf="segundaTela" class="segundaTela">
+                <h1>Selecione as Atividades</h1>
+                  <div class="d-flex flex-wrap">
+                    <div *ngFor="let atividade of atividades; let i = index" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        {{atividade.descricao}}
+                      </label>
+                      <select class="form-select horarios" aria-label="Default select example">
+                        <option selected>Horario de Inicio</option>
+                        <option *ngFor="let horario of horarios">{{horario.hora | date:"HH"}} Hora</option>
+                      </select>
+                      <select class="form-select horarios" aria-label="Default select example">
+                        <option selected>Horario de Finalização</option>
+                        <option *ngFor="let horario of horarios">{{horario.hora | date:"HH"}} Hora</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioGroup1" id="radio2">
-                    <label class="form-check-label" for="radio2">
-                      Não
-                    </label>
-                  </div>
-                </div>
-                <div class="creatina">
-                  <label>Creatina</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioGroup2" id="radio3" checked>
-                    <label class="form-check-label" for="radio3">
-                      Sim
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioGroup2" id="radio4">
-                    <label class="form-check-label" for="radio4">
-                      Não
-                    </label>
-                  </div>            
-                </div> 
               </div>
-            </div>           
+
+              <div *ngIf="ultimaTela" class="ultimaTela">
+
+                <div class="inputs">
+                  <div class="input-valor">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
+                      <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+    
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Valor Gasto</span>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                  </div>
+                  <div class="radio">
+                    <div class="whey">
+                      <label>Whey</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioGroup1" id="radio1">
+                        <label class="form-check-label" for="radio1">
+                          Sim
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioGroup1" id="radio2">
+                        <label class="form-check-label" for="radio2">
+                          Não
+                        </label>
+                      </div>
+                    </div>
+                    <div class="creatina">
+                      <label>Creatina</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioGroup2" id="radio3" checked>
+                        <label class="form-check-label" for="radio3">
+                          Sim
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioGroup2" id="radio4">
+                        <label class="form-check-label" for="radio4">
+                          Não
+                        </label>
+                      </div>            
+                    </div> 
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
+            </div>            
             
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button *ngIf="primeiraTela" type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Fechar</button>
+              <button *ngIf="segundaTela" (click)="segundaTela=false; primeiraTela=true" class="btn btn-secondary">Voltar</button>
+              <button *ngIf="ultimaTela" (click)="segundaTela=true; ultimaTela=false" class="btn btn-secondary">Voltar</button>
+              <button *ngIf="primeiraTela" (click)="segundaTela=true; primeiraTela=false" class="btn btn-primary" >Proximo</button>
+              <button *ngIf="segundaTela" (click)="segundaTela=false; ultimaTela=true" class="btn btn-primary" >Proximo</button>
               <button *ngIf="ultimaTela" type="button" class="btn btn-primary">Salvar</button>
-              <button *ngIf="primeiraTela">Proximo</button>
+              
             </div>
           </div>
         </div>
@@ -166,7 +196,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Deseja ver detalhes?
+              <h1 *ngIf="dia.dia">Dia: {{dia.dia | date:'dd/MM/yyyy'}}</h1>
+              <p *ngIf="dia.creatina">Creatina: {{dia.creatina.descricao}}</p>
+              <p *ngIf="dia.whey">Whey: {{dia.whey.descricao}}</p>
+              <p *ngIf="dia.valorGasto">Gastos = {{dia.valorGasto}}</p>
+              <h2>Alimentos Ingeridos:</h2>
+              <p *ngFor="let alimento of dia.alimentos" > {{alimento.idAlimento.nome}}</p>
+              <h2>Atividades Realizadas:</h2>
+              <p *ngFor="let atividade of dia.atividades"> {{atividade.idAtividade.descricao}}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>              

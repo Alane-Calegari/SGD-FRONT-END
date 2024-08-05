@@ -70,9 +70,22 @@ table {
     justify-content: space-around;
   }
 
-  
+  .selectionarAtividade {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: start;
+  }
 
- 
+  .horarios {
+    width: 200px;
+  }
+
+ .inputs {
+  display: flex;
+  flex-direction: row;
+ }
 
 
  

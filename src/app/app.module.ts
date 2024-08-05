@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; 
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatButtonModule,
     MatFormFieldModule,   
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    FormsModule
   ]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar bg-body-tertiary custom-class">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img src="../../../assets/436.png" alt="Logo" class="logo"><strong>SGD</strong></a>
@@ -17,14 +17,16 @@
 </div>
 
 <body class="conteudo">
+    <div class="asdfl">
+        <app-dias *ngIf="getPaginaDia()"></app-dias>
+        <app-atividades *ngIf="getPaginaAtividade()"></app-atividades>
+        <app-alimentos *ngIf="getPaginaAlimento()"></app-alimentos>    
     
-    <app-dias *ngIf="getPaginaDia()"></app-dias>
-    <app-atividades *ngIf="getPaginaAtividade()"></app-atividades>
-    <app-alimentos *ngIf="getPaginaAlimento()"></app-alimentos>    
-
-    <footer class="footer">
-        <p><a>&copy; 2024 Sistema de Gerenciamento do Dia</a></p>
-    </footer>
+        <footer class="footer">
+            <p><a>&copy; 2024 Sistema de Gerenciamento do Dia</a></p>
+        </footer>
+    </div>
+    
     
 </body>
 

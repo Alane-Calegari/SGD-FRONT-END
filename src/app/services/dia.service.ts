@@ -23,4 +23,8 @@ export class DiaService {
   post(dia: Dia): Observable<string> {
     return this.http.post(this.url, dia, {responseType: 'text'});
   }
+
+  getById(id: number): Observable<Dia> {
+    return this.http.get<Dia>(`${this.url}/${id}`);
+  }
 }
